@@ -3,24 +3,33 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void PlayGame()
+    [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private GameObject settingsPanel;
+
+    public void Play()
     {
         SceneManager.LoadScene("Level1");
     }
 
-    public void PlayTutorial()
+    public void Tutorial()
     {
         SceneManager.LoadScene("TutorialScene");
     }
 
     public void OpenSettings()
     {
-        Debug.Log("Open settings");
+        mainMenuPanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 
-    public void QuitGame()
+    public void BackFromSettings()
     {
-        Debug.Log("Quit Game");
+        settingsPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+    }
+
+    public void Quit()
+    {
         Application.Quit();
     }
 }
