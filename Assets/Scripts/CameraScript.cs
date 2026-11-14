@@ -5,18 +5,18 @@ public class CameraFollow : MonoBehaviour
     public Transform player;
     public float smoothSpeed = 5f;
 
-    private float offsetX;
+    private Vector3 offset;
 
     void Start()
     {
-        offsetX = transform.position.x - player.position.x;
+        offset = transform.position - player.position;
     }
 
     void LateUpdate()
     {
         Vector3 targetPosition = new Vector3(
-            player.position.x + offsetX,
-            transform.position.y,
+            player.position.x + offset.x,
+            player.position.y + offset.y,
             transform.position.z
         );
 
