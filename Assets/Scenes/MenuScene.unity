@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -538, y: 342}
+  m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18613449
 MonoBehaviour:
@@ -178,7 +178,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: f42ebcb2b19dccb48b4794c6c5e95123, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1143,8 +1143,6 @@ MonoBehaviour:
   distance: 520
   size: 1
   verticalPosition: 0
-  cam: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!23 &706897864
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1373,8 +1371,6 @@ MonoBehaviour:
   distance: 510
   size: 0.5
   verticalPosition: 0.1
-  cam: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!23 &859360701
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2503,8 +2499,6 @@ MonoBehaviour:
   distance: 500
   size: 0.5
   verticalPosition: 0.05
-  cam: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!23 &1621803545
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2612,8 +2606,6 @@ MonoBehaviour:
   distance: 505
   size: 0.5
   verticalPosition: 0.05
-  cam: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!23 &1748811866
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2825,8 +2817,6 @@ MonoBehaviour:
   distance: 500
   size: 1
   verticalPosition: 0
-  cam: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!1 &1787813849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,8 +3558,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.3, y: -133.899}
-  m_SizeDelta: {x: 687.362, y: 719.858}
+  m_AnchoredPosition: {x: -551, y: -163}
+  m_SizeDelta: {x: 500, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103622589
 MonoBehaviour:
