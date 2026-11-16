@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBodyMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Arm_L
+    m_Weight: 1
+  - m_Path: Arm_R
+    m_Weight: 1
+  - m_Path: Censor
+    m_Weight: 1
+  - m_Path: Eye_L_Pupil
+    m_Weight: 1
+  - m_Path: Eye_L_White
+    m_Weight: 1
+  - m_Path: Eye_R_Pupil
+    m_Weight: 1
+  - m_Path: Eye_R_White
+    m_Weight: 1
+  - m_Path: FX_Crack
+    m_Weight: 1
+  - m_Path: FX_EyesX
+    m_Weight: 1
+  - m_Path: FX_Hit
+    m_Weight: 1
+  - m_Path: Towel_Worn
+    m_Weight: 1
+  - m_Path: TowelHalf_L
+    m_Weight: 1
+  - m_Path: TowelHalf_R
+    m_Weight: 1
+  - m_Path: Towelman_Foot_L
+    m_Weight: 0
+  - m_Path: Towelman_Foot_R
+    m_Weight: 0
+  - m_Path: Towelman_ForeArm_L
+    m_Weight: 1
+  - m_Path: Towelman_Head
+    m_Weight: 1
+  - m_Path: Towelman_Leg_L
+    m_Weight: 0
+  - m_Path: Towelman_Leg_R
+    m_Weight: 0
+  - m_Path: Towelman_Rig
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips
+    m_Weight: 0
+  - m_Path: Towelman_Rig/Root/Hips/C_Censor
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/C_TowelWorn
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Leg_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Leg_L/Foot_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Leg_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Leg_R/Foot_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/C_Hit
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/Head
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/Head/C_EyesX
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/Head/EyeBone_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/Head/EyeBone_L/PupilBone_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/Head/EyeBone_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/Head/EyeBone_R/PupilBone_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4/Whip_5
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4/Whip_5/Whip_6
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4/Whip_5/Whip_6/Whip_7
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4/Whip_5/Whip_6/Whip_7/Whip_8
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4/Whip_5/Whip_6/Whip_7/Whip_8/Whip_9
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4/Whip_5/Whip_6/Whip_7/Whip_8/Whip_9/Whip_10
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_L/ForeArm_L/HandBone_L/Whip_1/Whip_2/Whip_3/Whip_4/Whip_5/Whip_6/Whip_7/Whip_8/Whip_9/Whip_10/C_Crack
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_R/ForeArm_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/Hips/Spine/UpperArm_R/ForeArm_R/HandBone_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/TowelHinge_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/TowelHinge_L/TowelFlap_L
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/TowelHinge_R
+    m_Weight: 1
+  - m_Path: Towelman_Rig/Root/TowelHinge_R/TowelFlap_R
+    m_Weight: 1
+  - m_Path: Towelman_Spine
+    m_Weight: 1
+  - m_Path: TowelWhip
+    m_Weight: 1

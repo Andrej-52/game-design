@@ -8,6 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7f;
     public float gravityMultiplier = 2f;
     public float groundCheckDistance = 0.15f;
+    public LayerMask groundMask = ~0;
+    public float jumpCooldown = 0.2f;
+    public KeyCode jumpKey = KeyCode.W;
+    public KeyCode jumpKeyAlt = KeyCode.UpArrow;
+
+    // Fired the moment a jump actually starts (used by PlayerAnimation)
+    public System.Action OnJump;
 
     [Header("Crouch")]
     public float crouchHeightMultiplier = 0.5f;
@@ -20,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 originalColliderCenter;
 
     private bool isCrouching;
+    private float lastJumpTime = -10f;
 
     void Start()
     {
@@ -31,11 +39,24 @@ public class PlayerMovement : MonoBehaviour
         originalColliderCenter = boxCollider.center;
     }
 
+    // While stunned (after being hit) the player cannot move or jump
+    float stunUntil;
+
+    public bool IsStunned => Time.time < stunUntil;
+
+    public void Stun(float seconds)
+    {
+        stunUntil = Time.time + seconds;
+    }
+
     void Update()
     {
+        if (Time.time < stunUntil)
+            return;
+
         Move();
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if ((Input.GetKeyDown(jumpKey) || Input.GetKeyDown(jumpKeyAlt)) && CanJump())
         {
             Jump();
         }
@@ -72,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = jumpForce;
 
         rb.linearVelocity = velocity;
+
+        lastJumpTime = Time.time;
+        OnJump?.Invoke();
     }
 
     void ApplyExtraGravity()
@@ -119,15 +143,35 @@ public class PlayerMovement : MonoBehaviour
         boxCollider.center = originalColliderCenter;
     }
 
-    bool IsGrounded()
+    bool CanJump()
     {
-        float distance =
-            boxCollider.bounds.extents.y + groundCheckDistance;
+        return Time.time - lastJumpTime > jumpCooldown && IsGrounded();
+    }
 
-        return Physics.Raycast(
-            transform.position,
-            Vector3.down,
-            distance
+    public bool IsGrounded()
+    {
+        // Still going up fast = in the air, even if we are close to the floor
+        if (rb.linearVelocity.y > 0.1f)
+            return false;
+
+        Bounds b = boxCollider.bounds;
+        Vector3 center = new Vector3(b.center.x, b.min.y - groundCheckDistance * 0.5f, b.center.z);
+        Vector3 halfExtents = new Vector3(b.extents.x * 0.9f, groundCheckDistance * 0.5f, b.extents.z * 0.9f);
+
+        Collider[] hits = Physics.OverlapBox(
+            center, halfExtents, Quaternion.identity,
+            groundMask, QueryTriggerInteraction.Ignore
         );
+
+        foreach (Collider hit in hits)
+        {
+            // Ignore ourselves and anything on the Towelman model
+            if (hit.transform == transform || hit.transform.IsChildOf(transform))
+                continue;
+
+            return true;
+        }
+
+        return false;
     }
 }
