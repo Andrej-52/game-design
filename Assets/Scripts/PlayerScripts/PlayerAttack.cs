@@ -16,6 +16,10 @@ public class PlayerAttack : MonoBehaviour
     public float hitBoxOffset = 1.5f;
     public float hitBoxYOffset = -0.5f;   // negative = lower the hit box
 
+    // Fired when a swing starts / when a swing hits at least one enemy (used by PlayerSounds)
+    public System.Action OnSwing;
+    public System.Action OnHitEnemy;
+
     Animator animator;
     PlayerAnimation playerAnimation;
     float lastAttackTime = -10f;
@@ -34,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
             lastAttackTime = Time.time;
             hitThisSwing.Clear();
             animator.SetTrigger("Whip");
+            OnSwing?.Invoke();
         }
     }
 
@@ -44,6 +49,8 @@ public class PlayerAttack : MonoBehaviour
             HitCenter(), hitBoxSize * 0.5f, Quaternion.identity,
             enemyMask, QueryTriggerInteraction.Collide
         );
+
+        bool hitSomething = false;
 
         foreach (Collider hit in hits)
         {
@@ -57,7 +64,11 @@ public class PlayerAttack : MonoBehaviour
                 continue;
 
             enemy.TakeDamage(damage);
+            hitSomething = true;
         }
+
+        if (hitSomething)
+            OnHitEnemy?.Invoke();
     }
 
     Vector3 HitCenter()
