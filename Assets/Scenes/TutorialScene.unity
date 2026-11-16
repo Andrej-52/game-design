@@ -17844,7 +17844,7 @@ PrefabInstance:
     - target: {fileID: 7179833764475990978, guid: 70d58ae3fb02fa64db7535049e5b6817, type: 3}
       propertyPath: hitSound
       value: 
-      objectReference: {fileID: 8300000, guid: 0a0e85d303b6baf48ae90f87af950de0, type: 3}
+      objectReference: {fileID: 8300000, guid: 249a9c4810ab30340a73c971c7a6c169, type: 3}
     - target: {fileID: 7179833764475990978, guid: 70d58ae3fb02fa64db7535049e5b6817, type: 3}
       propertyPath: hitSoundVolume
       value: 0.25
