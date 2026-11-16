@@ -7,10 +7,17 @@ using UnityEngine;
 // It follows the Music / Master / Mute settings from the settings menu (through MusicVolume).
 public static class MusicSetup
 {
-    const string ClipPath = "Assets/Audio/Speed race by Spinopel.mp3";
+    const string SpeedRace = "Assets/Audio/Speed race by Spinopel.mp3";
+    const string CityPulse = "Assets/Audio/City Pulse by Tawipop.mp3";
 
     [MenuItem("Tools/Towelman/Add Background Music")]
-    static void Add()
+    static void Add() { AddTrack(SpeedRace); }
+
+    // for the tutorial level
+    [MenuItem("Tools/Towelman/Add Tutorial Music (City Pulse)")]
+    static void AddTutorial() { AddTrack(CityPulse); }
+
+    static void AddTrack(string ClipPath)
     {
         AudioClip clip = AssetDatabase.LoadAssetAtPath<AudioClip>(ClipPath);
         if (clip == null)
