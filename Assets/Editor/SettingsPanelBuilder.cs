@@ -112,7 +112,9 @@ public static class SettingsPanelBuilder
 
         RectTransform background = NewUI("Background", sliderRt);
         CenterLine(background, 0f, 18f);
-        AddImage(background, panelSprite, Track, true).pixelsPerUnitMultiplier = 4f;
+        Image backgroundImage = AddImage(background, panelSprite, Track, true);
+        backgroundImage.pixelsPerUnitMultiplier = 4f;
+        backgroundImage.raycastTarget = true;
 
         RectTransform fillArea = NewUI("Fill Area", sliderRt);
         CenterLine(fillArea, 0f, 18f);
@@ -127,6 +129,7 @@ public static class SettingsPanelBuilder
         RectTransform handle = NewUI("Handle", handleArea);
         handle.sizeDelta = new Vector2(36f, 0f);
         Image handleImage = AddImage(handle, knobSprite, Yellow, false);
+        handleImage.raycastTarget = true;
 
         Slider slider = sliderRt.gameObject.AddComponent<Slider>();
         slider.fillRect = fill;

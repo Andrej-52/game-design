@@ -100,10 +100,10 @@ public class VolumeSettingsUI : MonoBehaviour
 
     static void AutoAttach()
     {
-        if (FindFirstObjectByType<VolumeSettingsUI>(FindObjectsInactive.Include) != null)
+        if (FindAnyObjectByType<VolumeSettingsUI>(FindObjectsInactive.Include) != null)
             return;
 
-        foreach (Slider slider in FindObjectsByType<Slider>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        foreach (Slider slider in FindObjectsByType<Slider>(FindObjectsInactive.Include))
         {
             if (slider.name != "MASTER Slider")
                 continue;
