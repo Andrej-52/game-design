@@ -15,6 +15,7 @@ public static class LevelSetup
         "Tools/Towelman/Add Victory Screen",
         "Tools/Towelman/Add Level Walls",
         "Tools/Towelman/Add Background Music",
+        "Tools/Towelman/Add Pause Menu",
         "Tools/Towelman/Add Intro Sequence",
     };
 

@@ -29,6 +29,12 @@ public class SoundManager : MonoBehaviour
             source.PlayOneShot(clip, GameAudio.Sound);
     }
 
+    public void Stop()
+    {
+        if (source != null)
+            source.Stop();
+    }
+
     public void PlayClick()
     {
         Play(click);

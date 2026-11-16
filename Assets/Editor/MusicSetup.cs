@@ -8,6 +8,7 @@ using UnityEngine;
 public static class MusicSetup
 {
     const string SpeedRace = "Assets/Audio/Speed race by Spinopel.mp3";
+    const string FunAtWork = "Assets/Audio/Fun At Work by Megis-music.mp3";
     const string CityPulse = "Assets/Audio/City Pulse by Tawipop.mp3";
 
     [MenuItem("Tools/Towelman/Add Background Music")]
@@ -16,6 +17,10 @@ public static class MusicSetup
     // for the tutorial level
     [MenuItem("Tools/Towelman/Add Tutorial Music (City Pulse)")]
     static void AddTutorial() { AddTrack(CityPulse); }
+
+    // for the main menu scene
+    [MenuItem("Tools/Towelman/Add Menu Music (Fun At Work)")]
+    static void AddMenu() { AddTrack(FunAtWork); }
 
     static void AddTrack(string ClipPath)
     {

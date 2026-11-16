@@ -35,6 +35,7 @@ public class VictoryUI : MonoBehaviour
     TextMeshProUGUI timeText;
     readonly List<Piece> confetti = new List<Piece>();
     bool shown, ready;
+    public bool IsShown => shown;
 
     void Awake()
     {
