@@ -82,8 +82,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.7536731, y: 2.6911669, z: 1.2}
-  m_Center: {x: 0.15420663, y: 1.2667924, z: 0.036762536}
+  m_Size: {x: 5.52659, y: 7.6887712, z: 2.3996487}
+  m_Center: {x: 0.28750157, y: 3.7655945, z: 0.036762476}
 --- !u!114 &7149156926126698442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,23 +117,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bcaf0dfd48ea7478193bbc8f9f634f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  walkSpeed: 2
-  patrolDistance: 4
+  walkSpeed: 3.4
+  patrolDistance: 12
   avoidLedges: 1
+  stepHeight: 0.5
   turnSpeed: 12
   yawOffset: 0
   autoDetectFront: 1
-  detectRange: 6
+  detectRange: 18
   chaseSpeedMultiplier: 1.5
-  attackRange: 1.6
+  attackRange: 4.8
   attackCooldown: 1.5
   attackSpeed: 1.6
   hitMoment: 0.45
   damage: 1
-  hitBoxSize: {x: 2, y: 2, z: 2}
-  hitBoxOffset: 1
+  hitBoxSize: {x: 6, y: 6, z: 2}
+  hitBoxOffset: 3
   deathSpeed: 1.5
   lingerTime: 0.3
+  status: 
 --- !u!1001 &8295934658006024470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +144,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6518802653770922036}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1f967455f856e454a8decbfcfcc8a09a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f967455f856e454a8decbfcfcc8a09a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f967455f856e454a8decbfcfcc8a09a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f967455f856e454a8decbfcfcc8a09a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -181,6 +195,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1f967455f856e454a8decbfcfcc8a09a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1f967455f856e454a8decbfcfcc8a09a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1f967455f856e454a8decbfcfcc8a09a, type: 3}
       propertyPath: m_Name

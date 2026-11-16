@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5518958716185374508}
   m_Father: {fileID: 0}
@@ -82,8 +82,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.459999, y: 3.2799978, z: 0.7494129}
-  m_Center: {x: -0.32999992, y: 1.6399989, z: -0.000000059604645}
+  m_Size: {x: 2.6996772, y: 3.2799978, z: 0.7494129}
+  m_Center: {x: -0.320124, y: 1.6399989, z: -0.00000007947286}
 --- !u!114 &7418574379331314961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,21 +117,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bcaf0dfd48ea7478193bbc8f9f634f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  walkSpeed: 4
-  patrolDistance: 4
+  walkSpeed: 7
+  patrolDistance: 16
   avoidLedges: 1
+  stepHeight: 0.5
   turnSpeed: 12
   yawOffset: 180
   autoDetectFront: 1
-  detectRange: 9
+  detectRange: 27
   chaseSpeedMultiplier: 1.6
-  attackRange: 2.5
+  attackRange: 7.5
   attackCooldown: 1.5
   attackSpeed: 1.6
   hitMoment: 0.55
   damage: 1
-  hitBoxSize: {x: 2, y: 2, z: 2}
-  hitBoxOffset: 1.5
+  hitBoxSize: {x: 6, y: 6, z: 6}
+  hitBoxOffset: 4.5
   deathSpeed: 1.5
   lingerTime: 0.3
 --- !u!1001 &5412762476326095047
