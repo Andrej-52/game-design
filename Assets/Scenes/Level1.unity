@@ -11382,8 +11382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RestartOnTouch
   damage: 1
-  hitSound: {fileID: 8300000, guid: 0a0e85d303b6baf48ae90f87af950de0, type: 3}
-  hitSoundVolume: 0.25
+  hitSound: {fileID: 8300000, guid: 249a9c4810ab30340a73c971c7a6c169, type: 3}
+  hitSoundVolume: 0.2
 --- !u!1001 &1443628064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14488,8 +14488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RestartOnTouch
   damage: 1
-  hitSound: {fileID: 8300000, guid: 0a0e85d303b6baf48ae90f87af950de0, type: 3}
-  hitSoundVolume: 0.25
+  hitSound: {fileID: 8300000, guid: 249a9c4810ab30340a73c971c7a6c169, type: 3}
+  hitSoundVolume: 0.2
 --- !u!1001 &1981167439
 PrefabInstance:
   m_ObjectHideFlags: 0
