@@ -193,7 +193,7 @@ public class GameOverUI : MonoBehaviour
         subtitleText = Text(subRt, subtitleHurt, 36f, new Color(0.62f, 0.50f, 0.47f), 3f);
 
         MakeButton(lowerRt, "RESTART", new Vector2(0f, -150f), Restart);
-        MakeButton(lowerRt, "BACK TO START", new Vector2(0f, -250f), BackToStart);
+        MakeButton(lowerRt, "BACK TO MAIN MENU", new Vector2(0f, -250f), BackToStart);
     }
 
     void MakeButton(RectTransform parent, string label, Vector2 pos, UnityEngine.Events.UnityAction onClick)
@@ -201,7 +201,7 @@ public class GameOverUI : MonoBehaviour
         RectTransform rt = Rect(label + " Button", parent);
         rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.anchoredPosition = pos;
-        rt.sizeDelta = new Vector2(460f, 84f);
+        rt.sizeDelta = new Vector2(600f, 84f);
 
         Image img = rt.gameObject.AddComponent<Image>();
         img.sprite = buttonSprite;

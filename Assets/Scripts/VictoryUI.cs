@@ -179,7 +179,7 @@ public class VictoryUI : MonoBehaviour
         strip.gameObject.AddComponent<Image>().color = Yellow;
         strip.GetComponent<Image>().raycastTarget = false;
 
-        MakeButton(card, "BACK TO START", new Vector2(0f, -70f), BackToStart);
+        MakeButton(card, "BACK TO MAIN MENU", new Vector2(0f, -70f), BackToStart);
         MakeButton(card, "PLAY AGAIN", new Vector2(0f, -170f), PlayAgain);
     }
 
@@ -210,7 +210,7 @@ public class VictoryUI : MonoBehaviour
 
     void MakeButton(RectTransform parent, string label, Vector2 pos, UnityEngine.Events.UnityAction onClick)
     {
-        RectTransform rt = Place(label + " Button", parent, pos, new Vector2(460f, 84f));
+        RectTransform rt = Place(label + " Button", parent, pos, new Vector2(600f, 84f));
 
         Image img = rt.gameObject.AddComponent<Image>();
         img.sprite = buttonSprite;
