@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     public float walkSpeed = 2f;
     public float patrolDistance = 4f;      // how far from the start position it walks before turning
     public bool avoidLedges = true;
+    public float stepHeight = 0.5f;        // obstacles lower than this are ignored (small bumps)
     public float turnSpeed = 12f;
     [Tooltip("Extra turn of the model. 0 if the model faces +Z, 180 if it faces -Z. Change this if the enemy walks backwards.")]
     public float yawOffset = 0f;
@@ -48,6 +49,13 @@ public class EnemyAI : MonoBehaviour
     float patrolDir = 1f;
     float busyUntil;
     float nextTurnTime;
+    float lastMoveDir;     // what we asked for last physics step
+    float lastMoveSpeed;
+    float stuckTime;       // how long we have been trying to move without getting anywhere
+
+    [Header("Debug")]
+    [SerializeField] string status;   // what the enemy is doing right now (watch it in the Inspector when he gets stuck)
+    string blocker = "";
     float chaseLockUntil;
     float lastAttackTime = -10f;
     bool dead;
@@ -82,6 +90,13 @@ public class EnemyAI : MonoBehaviour
         model.SetParent(pivot, true);
 
         rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+
+        // no friction, so the body doesn't snag on seams between floor pieces or rub against walls
+        PhysicsMaterial slippery = new PhysicsMaterial("EnemySlippery");
+        slippery.dynamicFriction = 0f;
+        slippery.staticFriction = 0f;
+        slippery.frictionCombine = PhysicsMaterialCombine.Minimum;
+        bodyCollider.sharedMaterial = slippery;
 
         // the AI handles death itself (plays the animation, then removes the enemy)
         health.destroyOnDeath = false;
@@ -124,9 +139,26 @@ public class EnemyAI : MonoBehaviour
 
         Vector3 v = rb.linearVelocity;
 
+        // Trying to move but not getting anywhere = stuck on something we can't see (a curb, a seam, ...)
+        if (lastMoveDir != 0f && Mathf.Abs(v.x) < lastMoveSpeed * 0.25f)
+            stuckTime += Time.fixedDeltaTime;
+        else
+            stuckTime = 0f;
+
+        if (stuckTime > 0.4f)
+        {
+            stuckTime = 0f;
+            patrolDir = -patrolDir;                 // turn around
+            nextTurnTime = Time.time + 0.5f;
+            chaseLockUntil = Time.time + 1.5f;      // and give up chasing for a moment
+            blocker = "stuck on something";
+        }
+        lastMoveDir = 0f;
+
         // attacking or hurt: stand still (the animation plays at its own speed)
         if (Time.time < busyUntil)
         {
+            status = "Attacking / hurt";
             v.x = 0f;
             rb.linearVelocity = v;
             return;
@@ -150,6 +182,8 @@ public class EnemyAI : MonoBehaviour
                     StartAttack();
                 else
                     animator.speed = 0f;   // waiting for the next attack: hold the pose instead of walking in place
+
+                status = "In attack range";
 
                 v.x = 0f;
                 rb.linearVelocity = v;
@@ -195,41 +229,52 @@ public class EnemyAI : MonoBehaviour
         // only play the walk animation while actually moving
         animator.speed = dir != 0f ? 1f : 0f;
 
+        lastMoveDir = dir;
+        lastMoveSpeed = speed;
+
+        status = dir == 0f ? "STOPPED, blocked by: " + blocker : (chasing ? "Chasing" : "Patrolling");
+
         v.x = dir * speed;
         rb.linearVelocity = v;
     }
 
     bool Blocked(float dir)
     {
+        blocker = "";
         Bounds b = bodyCollider.bounds;
         Vector3 forward = new Vector3(dir, 0f, 0f);
 
-        // wall, checked at chest height and near the feet (so low obstacles count too)
-        float reach = b.extents.x + 0.15f;
-        Vector3 low = new Vector3(b.center.x, b.min.y + 0.25f, b.center.z);
-        if (HitSolid(Physics.RaycastAll(b.center, forward, reach, ~0, QueryTriggerInteraction.Ignore)) ||
-            HitSolid(Physics.RaycastAll(low, forward, reach, ~0, QueryTriggerInteraction.Ignore)))
+        // wall: sweep a box the size of the body (minus the lowest part, see Step Height) forward,
+        // so anything the body would bump into counts, also things that are offset in depth
+        float lift = stepHeight * 0.5f;
+        Vector3 origin0 = new Vector3(b.center.x, b.center.y + lift, b.center.z);
+        Vector3 half = new Vector3(0.05f, Mathf.Max(0.05f, b.extents.y - lift - 0.02f), b.extents.z);
+        if (HitSolid(Physics.BoxCastAll(origin0, half, forward, Quaternion.identity, b.extents.x + 0.15f, ~0, QueryTriggerInteraction.Ignore), true))
             return true;
 
         // no floor ahead
         if (avoidLedges)
         {
             Vector3 origin = new Vector3(b.center.x + dir * (b.extents.x + 0.2f), b.min.y + 0.5f, b.center.z);
-            if (!HitSolid(Physics.SphereCastAll(origin, 0.2f, Vector3.down, 1f, ~0, QueryTriggerInteraction.Ignore)))
+            if (!HitSolid(Physics.SphereCastAll(origin, 0.2f, Vector3.down, 1f, ~0, QueryTriggerInteraction.Ignore), false))
+            {
+                blocker = "no floor ahead (ledge)";
                 return true;
+            }
         }
 
         return false;
     }
 
-    // true if any hit is level geometry (not ourselves, the player or other enemies)
-    bool HitSolid(RaycastHit[] hits)
+    // true if any hit is solid (not ourselves or the player; other enemies only count for walls)
+    bool HitSolid(RaycastHit[] hits, bool enemiesCount)
     {
         foreach (RaycastHit h in hits)
         {
             if (h.transform.IsChildOf(transform)) continue;
             if (h.collider.GetComponentInParent<PlayerHealth>() != null) continue;
-            if (h.collider.GetComponentInParent<EnemyHealth>() != null) continue;
+            if (!enemiesCount && h.collider.GetComponentInParent<EnemyHealth>() != null) continue;
+            blocker = h.collider.name;
             return true;
         }
         return false;
