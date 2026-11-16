@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     public float respawnInvincibleTime = 2f;                // protection after the respawn
 
     [Header("Game over")]
-    public float restartDelay = 3f;                         // seconds after dying before the scene restarts
+    public float restartDelay = 3f;                         // only used when the scene has no GameOverUI
 
     public UnityEvent onHurt;
     public UnityEvent onDeath;
@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
     public int Health => currentHealth;
     public bool IsDead { get; private set; }
+    public bool Immune { get; set; }     // true after reaching the office: nothing can hurt him anymore
 
     Rigidbody rb;
     PlayerMovement movement;
@@ -87,7 +88,7 @@ public class PlayerHealth : MonoBehaviour
     // returns false if the hit didn't count (already dead or protected)
     bool Hurt(int amount, float protectedFor)
     {
-        if (IsDead || Time.time < invincibleUntil)
+        if (IsDead || Immune || Time.time < invincibleUntil)
             return false;
 
         currentHealth -= amount;
@@ -135,6 +136,16 @@ public class PlayerHealth : MonoBehaviour
         return safeSpots[0].position;
     }
 
+    // Used by the level timer when time runs out
+    public void Kill()
+    {
+        if (IsDead)
+            return;
+
+        currentHealth = 0;
+        Die();
+    }
+
     void Die()
     {
         IsDead = true;
@@ -145,7 +156,10 @@ public class PlayerHealth : MonoBehaviour
         if (attack != null) attack.enabled = false;
 
         onDeath?.Invoke();
-        Invoke(nameof(RestartScene), restartDelay);
+
+        // with a game over screen the player picks restart / back to start, otherwise restart automatically
+        if (FindFirstObjectByType<GameOverUI>() == null)
+            Invoke(nameof(RestartScene), restartDelay);
     }
 
     void RestartScene()
