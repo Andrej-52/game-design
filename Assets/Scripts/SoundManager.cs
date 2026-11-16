@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
     public void Play(AudioClip clip)
     {
         if (clip != null)
-            source.PlayOneShot(clip);
+            source.PlayOneShot(clip, GameAudio.Sound);
     }
 
     public void PlayClick()
