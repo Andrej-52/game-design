@@ -115,7 +115,7 @@ public class PlayerSounds : MonoBehaviour
     void Play(AudioClip clip)
     {
         if (clip != null)
-            source.PlayOneShot(clip, volume);
+            source.PlayOneShot(clip, volume * GameAudio.Sound);
     }
 
 #if UNITY_EDITOR
