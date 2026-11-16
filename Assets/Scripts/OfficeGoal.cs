@@ -9,6 +9,10 @@ public class OfficeGoal : MonoBehaviour
     public VictoryUI victory;
     public LevelTimer timer;
 
+    [Header("Sound")]
+    public AudioClip reachedSound;
+    [Range(0f, 1f)] public float reachedSoundVolume = 1f;
+
     bool reached;
 
     void Reset()
@@ -24,6 +28,7 @@ public class OfficeGoal : MonoBehaviour
         if (player == null || player.IsDead) return;
 
         reached = true;
+        GameAudio.PlaySound(reachedSound, reachedSoundVolume);
 
         float timeLeft = -1f;
         if (timer == null) timer = FindFirstObjectByType<LevelTimer>();

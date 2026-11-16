@@ -1253,7 +1253,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5c677b76a9373c4a86291f1cc34f59b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1110954638}
   m_SourcePrefab: {fileID: 100100000, guid: c5c677b76a9373c4a86291f1cc34f59b, type: 3}
 --- !u!1001 &166459000
 PrefabInstance:
@@ -9609,6 +9612,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 30, y: 1.3199999, z: 30}
   m_Center: {x: 0, y: -0.34, z: 0}
+--- !u!1 &1110954637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c5c677b76a9373c4a86291f1cc34f59b, type: 3}
+  m_PrefabInstance: {fileID: 160365617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1110954638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110954637}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30.9, y: 1, z: 1}
+  m_Center: {x: 0, y: 8.11, z: 0}
 --- !u!1001 &1117407156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12068,7 +12097,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4, y: 120, z: 40}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 3, y: 0, z: 0}
 --- !u!4 &1431146952
 Transform:
   m_ObjectHideFlags: 0
@@ -17180,6 +17209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OfficeGoal
   victory: {fileID: 1332322396}
   timer: {fileID: 444206558}
+  reachedSound: {fileID: 8300000, guid: c999b731ef7c9b24d9086372db229604, type: 3}
+  reachedSoundVolume: 1
 --- !u!65 &2041912892
 BoxCollider:
   m_ObjectHideFlags: 0
