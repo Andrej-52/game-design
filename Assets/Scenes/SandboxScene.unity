@@ -5028,6 +5028,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1686628117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1028400074
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.6422668
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5000003
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.243111
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_Name
+      value: Towelman
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ae2754ef0cb041b4e924d6fc80d9f454, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2fac8247f1b4d0f4eb6d53d21bc9c922, type: 3}
 --- !u!1 &1029848241
 GameObject:
   m_ObjectHideFlags: 0
@@ -9855,3 +9916,4 @@ SceneRoots:
   - {fileID: 1456349048}
   - {fileID: 1942664926}
   - {fileID: 637952305}
+  - {fileID: 1028400074}
