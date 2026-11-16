@@ -17161,6 +17161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OfficeGoal
   victory: {fileID: 1332322396}
   timer: {fileID: 444206558}
+  reachedSound: {fileID: 8300000, guid: c999b731ef7c9b24d9086372db229604, type: 3}
+  reachedSoundVolume: 1
 --- !u!65 &2041912892
 BoxCollider:
   m_ObjectHideFlags: 0
