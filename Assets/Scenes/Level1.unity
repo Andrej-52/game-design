@@ -8154,6 +8154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1117289657}
   - component: {fileID: 1117289656}
+  - component: {fileID: 1117289658}
   m_Layer: 0
   m_Name: GameOverScreen
   m_TagString: Untagged
@@ -8196,6 +8197,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117289658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117289655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a790003493774642b7764ad7b3892f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverSound
+  gameOverSound: {fileID: 8300000, guid: be1833497cc8e9b44a6bf67ca07e0710, type: 3}
+  volume: 1
+  delay: 1.4
+  player: {fileID: 0}
 --- !u!1001 &1123810452
 PrefabInstance:
   m_ObjectHideFlags: 0
