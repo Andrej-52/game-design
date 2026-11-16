@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class GameAudio
 {
@@ -46,6 +47,22 @@ public static class GameAudio
         music = PlayerPrefs.GetFloat(MusicKey, 0.7f);
         muted = PlayerPrefs.GetInt(MutedKey, 0) == 1;
         Apply();
+
+        // sounds on the shared sources must not carry over into the next scene
+        // (e.g. the game over sound after pressing restart / back to menu)
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StopSounds();
+    }
+
+    public static void StopSounds()
+    {
+        if (sfxSource != null) sfxSource.Stop();
+        if (SoundManager.Instance != null) SoundManager.Instance.Stop();
     }
 
     static void Save()
