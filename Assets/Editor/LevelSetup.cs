@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Tools > Towelman > Set Up Open Level
 // Adds everything the tutorial has to the scene you have open (e.g. Level1): hearts, level timer + watch,
-// game over screen, victory screen with the office finish line, and the invisible level walls.
+// game over screen, victory screen with the office finish line, the invisible level walls, the background music and the intro.
 // The player and camera are left alone. Enemies, buses and billboards are level content, drag the prefabs in yourself.
 public static class LevelSetup
 {
@@ -14,6 +14,8 @@ public static class LevelSetup
         "Tools/Towelman/Add Game Over Screen",
         "Tools/Towelman/Add Victory Screen",
         "Tools/Towelman/Add Level Walls",
+        "Tools/Towelman/Add Background Music",
+        "Tools/Towelman/Add Intro Sequence",
     };
 
     [MenuItem("Tools/Towelman/Set Up Open Level")]
