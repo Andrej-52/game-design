@@ -62,4 +62,21 @@ public static class GameAudio
     {
         AudioListener.volume = muted ? 0f : master;
     }
+
+    static AudioSource sfxSource;
+
+    public static void PlaySound(AudioClip clip, float volume = 1f)
+    {
+        if (clip == null)
+            return;
+
+        if (sfxSource == null)
+        {
+            GameObject go = new GameObject("GameAudio SFX");
+            Object.DontDestroyOnLoad(go);
+            sfxSource = go.AddComponent<AudioSource>();
+        }
+
+        sfxSource.PlayOneShot(clip, volume * sound);
+    }
 }
