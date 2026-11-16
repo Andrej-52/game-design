@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 475e38f9c49a4a64a9033d2aeb47644d, type: 3}
       propertyPath: m_Name
-      value: ObstacleBus 1
+      value: Bus
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -123,3 +123,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RestartOnTouch
   damage: 1
+  hitSound: {fileID: 8300000, guid: 0a0e85d303b6baf48ae90f87af950de0, type: 3}
+  hitSoundVolume: 0.25

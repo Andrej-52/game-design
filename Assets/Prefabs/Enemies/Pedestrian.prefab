@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2735828299974620106}
   - component: {fileID: 7149156926126698442}
   - component: {fileID: 2903266939603346374}
+  - component: {fileID: -3961744759805254401}
   m_Layer: 0
   m_Name: Pedestrian
   m_TagString: Untagged
@@ -136,6 +137,22 @@ MonoBehaviour:
   deathSpeed: 1.5
   lingerTime: 0.3
   status: 
+--- !u!114 &-3961744759805254401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197265634798058486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbffbf17a8380341a2785fea5e19c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySounds
+  hurtClips:
+  - {fileID: 8300000, guid: 8f04c062866babc4d90ae536fec77223, type: 3}
+  deathClip: {fileID: 0}
+  volume: 1
 --- !u!1001 &8295934658006024470
 PrefabInstance:
   m_ObjectHideFlags: 0
