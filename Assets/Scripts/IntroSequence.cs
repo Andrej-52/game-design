@@ -110,8 +110,13 @@ public class IntroSequence : MonoBehaviour
 
     // ---------- the cutscene ----------
 
+    public static bool Playing;   // true while the intro runs (the pause menu checks this)
+
+    void OnDestroy() { Playing = false; }
+
     IEnumerator Sequence()
     {
+        Playing = true;
         // wait a frame so the player's and the camera's own scripts have started
         black.alpha = 1f;
         yield return null;
@@ -403,6 +408,7 @@ public class IntroSequence : MonoBehaviour
     {
         if (finished) return;
         finished = true;
+        Playing = false;
 
         if (follow != null)
         {
