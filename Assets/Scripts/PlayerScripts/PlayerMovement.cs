@@ -20,12 +20,15 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Steps and bumps up to this height (in world units) are walked over instead of blocking him")]
     public float stepHeight = 0.6f;
     public float stepCheckDistance = 0.12f;
+    [Tooltip("Radius of the rounded feet collider under the body box. Rounded feet slide over the seams between ground tiles instead of catching on them.")]
+    public float footRadius = 0.6f;
 
     [Header("Crouch")]
     public float crouchHeightMultiplier = 0.5f;
 
     private Rigidbody rb;
     private BoxCollider boxCollider;
+    private CapsuleCollider feet;
 
     private Vector3 originalScale;
     private Vector3 originalColliderSize;
@@ -39,16 +42,48 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
 
-        originalScale = transform.localScale;
-        originalColliderSize = boxCollider.size;
-        originalColliderCenter = boxCollider.center;
-
         // no friction, so he never sticks to walls or seams between pieces of ground
         PhysicsMaterial slippery = new PhysicsMaterial("PlayerSlippery");
         slippery.dynamicFriction = 0f;
         slippery.staticFriction = 0f;
         slippery.frictionCombine = PhysicsMaterialCombine.Minimum;
         boxCollider.material = slippery;
+
+        AddRoundedFeet(slippery);
+
+        originalScale = transform.localScale;
+        originalColliderSize = boxCollider.size;
+        originalColliderCenter = boxCollider.center;
+    }
+
+    // A box sliding over ground made of many box tiles gets stopped at the seams between them
+    // (the physics engine sometimes treats the edge where two tiles meet as a wall).
+    // So the box is lifted a little and a capsule lying along X carries him instead:
+    // its round bottom glides over the seams. His feet stay at exactly the same height as before.
+    void AddRoundedFeet(PhysicsMaterial material)
+    {
+        Vector3 size = boxCollider.size;
+        Vector3 center = boxCollider.center;
+        float r = Mathf.Min(footRadius, size.y * 0.25f, size.x * 0.5f);
+        float bottom = center.y - size.y * 0.5f;
+
+        boxCollider.size = new Vector3(size.x, size.y - r, size.z);
+        boxCollider.center = new Vector3(center.x, center.y + r * 0.5f, center.z);
+
+        feet = gameObject.AddComponent<CapsuleCollider>();
+        feet.direction = 0;                 // lying along X (the running direction)
+        feet.radius = r;
+        feet.height = size.x;               // as wide as the body
+        feet.center = new Vector3(center.x, bottom + r, center.z);
+        feet.material = material;
+    }
+
+    // Box + feet together
+    Bounds BodyBounds()
+    {
+        Bounds b = boxCollider.bounds;
+        if (feet != null) b.Encapsulate(feet.bounds);
+        return b;
     }
 
     // While stunned (after being hit) the player cannot move or jump
@@ -134,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         Vector3 dir = new Vector3(Mathf.Sign(input), 0f, 0f);
-        Bounds b = boxCollider.bounds;
+        Bounds b = BodyBounds();
         float reach = b.extents.x + stepCheckDistance;
 
         // something low in front of his feet?
@@ -225,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
         if (rb.linearVelocity.y > 0.1f)
             return false;
 
-        Bounds b = boxCollider.bounds;
+        Bounds b = BodyBounds();
         Vector3 center = new Vector3(b.center.x, b.min.y - groundCheckDistance * 0.5f, b.center.z);
         Vector3 halfExtents = new Vector3(b.extents.x * 0.9f, groundCheckDistance * 0.5f, b.extents.z * 0.9f);
 
