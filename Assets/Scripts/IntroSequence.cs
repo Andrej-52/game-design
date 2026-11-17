@@ -268,14 +268,21 @@ public class IntroSequence : MonoBehaviour
         float length = (float)video.length;
         float t = 0f;
         const float ringStart = 2.1f;   // the watch starts ringing about here in the clip
+        bool rang = false;
         while (t < length - 0.05f)
         {
             t += Time.unscaledDeltaTime;
+            if (!rang && t > ringStart)
+            {
+                rang = true;
+                GameAudio.PlaySound(GameAudio.AlarmRing, 0.9f);
+            }
             alarmTextGroup.alpha = t > ringStart ? Mathf.Min(1f, (t - ringStart) * 8f) : 0f;
             yield return null;
         }
 
         // hard cut back to the game
+        GameAudio.StopSounds();
         alarmTextGroup.alpha = 0f;
         handRoot.gameObject.SetActive(false);
         video.Stop();
@@ -319,6 +326,7 @@ public class IntroSequence : MonoBehaviour
         // it rings: the clock shakes, rays flash, the word appears
         t = 0f;
         const float ring = 1.1f;
+        GameAudio.PlaySound(GameAudio.AlarmRing, 0.9f);
         while (t < ring)
         {
             t += Time.unscaledDeltaTime;

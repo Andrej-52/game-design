@@ -1612,6 +1612,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WatchUI
   timer: {fileID: 266592811}
   panicSeconds: 10
+  ringInterval: 2.6
+  ringVolume: 0.8
 --- !u!1001 &220917038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8261,6 +8263,8 @@ MonoBehaviour:
   volume: 1
   delay: 1.4
   player: {fileID: 0}
+  stopMusic: 1
+  musicFadeTime: 0.5
 --- !u!1001 &1123810452
 PrefabInstance:
   m_ObjectHideFlags: 0

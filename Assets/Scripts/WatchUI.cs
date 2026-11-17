@@ -11,6 +11,9 @@ public class WatchUI : MonoBehaviour
 
     [Header("Look")]
     public float panicSeconds = 10f;   // watch starts shaking and flashing below this
+    public float ringInterval = 2.6f;  // seconds between alarm rings while time is running out
+    [Range(0f, 1f)] public float ringVolume = 0.8f;
+    float nextRing;
 
     static readonly Color Strap = new Color(0.30f, 0.14f, 0.06f);
     static readonly Color StrapDark = new Color(0.18f, 0.08f, 0.03f);
@@ -118,6 +121,13 @@ public class WatchUI : MonoBehaviour
         bool panic = remaining <= panicSeconds && !timer.TimeIsUp && timer.Running;
         if (panic)
         {
+            // ring every few seconds (Time.time stands still while the game is paused)
+            if (Time.time >= nextRing)
+            {
+                nextRing = Time.time + ringInterval;
+                GameAudio.PlaySound(GameAudio.AlarmRing, ringVolume);
+            }
+
             float beat = Mathf.Abs(Mathf.Sin(Time.time * Mathf.PI));   // once per second
             bool flash = Mathf.Repeat(Time.time * 4f, 1f) < 0.5f;
 
@@ -128,6 +138,7 @@ public class WatchUI : MonoBehaviour
         }
         else
         {
+            nextRing = 0f;
             watch.localScale = Vector3.one;
             watch.anchoredPosition = basePosition;
             bezel.color = timer.TimeIsUp ? Danger : Bezel;

@@ -4,6 +4,7 @@ public class EnemySounds : MonoBehaviour
 {
     public AudioClip[] hurtClips;
     public AudioClip deathClip;
+    [Tooltip("Played when the enemy starts an attack")] public AudioClip attackClip;
     [Range(0f, 1f)] public float volume = 1f;
 
     EnemyHealth health;
@@ -37,6 +38,12 @@ public class EnemySounds : MonoBehaviour
     {
         if (hurtClips != null && hurtClips.Length > 0)
             GameAudio.PlaySound(hurtClips[Random.Range(0, hurtClips.Length)], volume);
+    }
+
+    public void PlayAttack()
+    {
+        if (attackClip != null)
+            GameAudio.PlaySound(attackClip, volume);
     }
 
     public void PlayDeath()

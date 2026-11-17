@@ -152,6 +152,7 @@ MonoBehaviour:
   hurtClips:
   - {fileID: 8300000, guid: bccecdf7e34915a4bba678c3b024c3c4, type: 3}
   deathClip: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 4979b336de9f32e45a2867eeae04afcd, type: 3}
   volume: 1
 --- !u!1001 &400821653862946740
 PrefabInstance:

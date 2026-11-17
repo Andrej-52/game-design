@@ -81,6 +81,17 @@ public static class GameAudio
     }
 
     static AudioSource sfxSource;
+    static AudioClip alarmRing;
+
+    // the alarm clock ring (Assets/Resources/AlarmRing.wav), used by the intro and by the watch when time is running out
+    public static AudioClip AlarmRing
+    {
+        get
+        {
+            if (alarmRing == null) alarmRing = Resources.Load<AudioClip>("AlarmRing");
+            return alarmRing;
+        }
+    }
 
     public static void PlaySound(AudioClip clip, float volume = 1f)
     {

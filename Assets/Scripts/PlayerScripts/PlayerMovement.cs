@@ -23,18 +23,10 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Radius of the rounded feet collider under the body box. Rounded feet slide over the seams between ground tiles instead of catching on them.")]
     public float footRadius = 0.6f;
 
-    [Header("Crouch")]
-    public float crouchHeightMultiplier = 0.5f;
-
     private Rigidbody rb;
     private BoxCollider boxCollider;
     private CapsuleCollider feet;
 
-    private Vector3 originalScale;
-    private Vector3 originalColliderSize;
-    private Vector3 originalColliderCenter;
-
-    private bool isCrouching;
     private float lastJumpTime = -10f;
 
     void Start()
@@ -50,10 +42,6 @@ public class PlayerMovement : MonoBehaviour
         boxCollider.material = slippery;
 
         AddRoundedFeet(slippery);
-
-        originalScale = transform.localScale;
-        originalColliderSize = boxCollider.size;
-        originalColliderCenter = boxCollider.center;
     }
 
     // A box sliding over ground made of many box tiles gets stopped at the seams between them
@@ -107,16 +95,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            StartCrouch();
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            StopCrouch();
-        }
     }
 
     void FixedUpdate()
@@ -161,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
     // he is lifted up onto it.
     void StepUp()
     {
-        if (Time.time < stunUntil || isCrouching)
+        if (Time.time < stunUntil)
             return;
 
         float input = Input.GetAxisRaw("Horizontal");
@@ -213,40 +191,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return found;
-    }
-
-    void StartCrouch()
-    {
-        if (isCrouching)
-            return;
-
-        isCrouching = true;
-
-        Vector3 scale = originalScale;
-        scale.y *= crouchHeightMultiplier;
-        transform.localScale = scale;
-
-        Vector3 colliderSize = originalColliderSize;
-        colliderSize.y *= crouchHeightMultiplier;
-        boxCollider.size = colliderSize;
-
-        Vector3 colliderCenter = originalColliderCenter;
-        colliderCenter.y -=
-            (originalColliderSize.y - colliderSize.y) / 2f;
-
-        boxCollider.center = colliderCenter;
-    }
-
-    void StopCrouch()
-    {
-        if (!isCrouching)
-            return;
-
-        isCrouching = false;
-
-        transform.localScale = originalScale;
-        boxCollider.size = originalColliderSize;
-        boxCollider.center = originalColliderCenter;
     }
 
     bool CanJump()

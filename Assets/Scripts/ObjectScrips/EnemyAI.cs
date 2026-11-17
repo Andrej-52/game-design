@@ -288,6 +288,8 @@ public class EnemyAI : MonoBehaviour
         busyUntil = Time.time + length;
         animator.speed = attackSpeed;
         animator.SetTrigger("Attack");
+        EnemySounds sounds = GetComponentInChildren<EnemySounds>();
+        if (sounds != null) sounds.PlayAttack();
         attackRoutine = StartCoroutine(HitAfter(length * hitMoment));
     }
 
