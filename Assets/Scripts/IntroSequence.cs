@@ -23,6 +23,17 @@ public class IntroSequence : MonoBehaviour
 
     [Header("Hand-with-watch clip (set by Tools > Towelman > Add Intro Sequence)")]
     public VideoClip handClip;
+    [Tooltip("Web builds can't play a VideoClip, so they load this file from Assets/StreamingAssets instead")]
+    public string handClipFile = "HandWatch.mp4";
+    public float handClipFileLength = 4f;
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+    static readonly bool HandClipFromUrl = true;
+    const float HandClipPrepareTimeout = 10f;
+#else
+    static readonly bool HandClipFromUrl = false;
+    const float HandClipPrepareTimeout = 3f;
+#endif
 
     [Header("Camera")]
     [Tooltip("1 = normal camera distance, smaller = closer")]
@@ -153,7 +164,7 @@ public class IntroSequence : MonoBehaviour
         float t;
         float lookTime = watchLength + 0.4f;
 
-        if (handClip != null && hasCamera)
+        if ((handClip != null || HandClipFromUrl) && hasCamera)
         {
             // the camera is already waiting on him, under the clip
             cam.transform.position = playerPos + offset * closeUpDistance;
@@ -238,14 +249,22 @@ public class IntroSequence : MonoBehaviour
         VideoPlayer video = gameObject.AddComponent<VideoPlayer>();
         video.playOnAwake = false;
         video.isLooping = false;
-        video.clip = handClip;
+        if (HandClipFromUrl)
+        {
+            video.source = VideoSource.Url;
+            video.url = Application.streamingAssetsPath + "/" + handClipFile;
+        }
+        else
+        {
+            video.clip = handClip;
+        }
         video.renderMode = VideoRenderMode.RenderTexture;
         video.targetTexture = texture;
         video.audioOutputMode = VideoAudioOutputMode.None;
         video.Prepare();
 
         float wait = 0f;
-        while (!video.isPrepared && wait < 3f)
+        while (!video.isPrepared && wait < HandClipPrepareTimeout)
         {
             wait += Time.unscaledDeltaTime;
             yield return null;
@@ -265,11 +284,16 @@ public class IntroSequence : MonoBehaviour
         black.alpha = 0f;
         video.Play();
 
+        bool ended = false;
+        video.loopPointReached += _ => ended = true;
+
+        // a clip loaded from a URL doesn't always report its length
         float length = (float)video.length;
+        if (length < 0.1f) length = handClipFileLength;
         float t = 0f;
         const float ringStart = 2.1f;   // the watch starts ringing about here in the clip
         bool rang = false;
-        while (t < length - 0.05f)
+        while (t < length - 0.05f && !ended)
         {
             t += Time.unscaledDeltaTime;
             if (!rang && t > ringStart)
